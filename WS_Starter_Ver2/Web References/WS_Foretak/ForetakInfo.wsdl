@@ -1,0 +1,1241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd1="http://dbonline.no/webservices/xsd/ForetakInfo" xmlns:xsd2="http://dbonline.no/webservices/xsd/Autorisasjon" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dbonline.no/webservices/wsdl/ForetakInfo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="ForetakInfo" targetNamespace="http://dbonline.no/webservices/wsdl/ForetakInfo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://dbonline.no/webservices/xsd/ForetakInfo">
+      <xsd:complexType name="FullmaktForetak">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Dunsnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Postnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Selskapsform" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="ProkuraKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="ProkuraTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SignaturKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SignaturTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="FullmaktPerson" type="xsd1:FullmaktPerson" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FullmaktPerson">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Internreferanse" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FodtDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Postnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FullmaktTypeKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FullmaktTypeTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FullmaktKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FullmaktTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Prioritet" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Antall" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Obligatorisk" nillable="true" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Verv" nillable="true" type="xsd1:VervData" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="VervData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervTekst" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Scoring">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Beslutning" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ArsaksData" type="xsd1:ArsaksData" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Score" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GrenseAvslag" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GrenseGodkjent" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Scorevariabel" type="xsd1:Scorevariabel" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Raascore" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Risikoklasse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="PD" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Undermodell" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Limit" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArsaksData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="ArsaksKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="ArsaksTekst" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Scorevariabel">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Verdi" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Scorepoeng" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Juridisk">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ProkuraKode" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="ProkuraTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SignaturKode" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SignaturTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EierStrukturKode" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="EierStrukturTekst" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Identifikasjon">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Dunsnr" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Verv">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InternRef" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FodtDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Telefon" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Postnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervTekst" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BetaKilder">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Telefon" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BetaSammendrag">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AntallInkasso" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AjourDatoInkasso" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AntallPanterLosore" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AjourDatoLosore" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AntallPanterEiendom" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AjourDatoEiendom" nillable="true" type="xsd:date" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GjenpartData">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Referansenr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="OmspurtData" type="xsd1:OmspurtData" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Ligning" type="xsd1:LigningGjenpart" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="NaringsInteresser" type="xsd1:NaringsInteresserGjenpart" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BetaOmspurtDetaljer" type="xsd1:BetaOmspurtDetaljer" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LigningGjenpart">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkatteAr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Formue" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Inntekt" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Skatt" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SkatteKlasse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kommunenr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KommuneNavn" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OmspurtData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Postnr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BetaOmspurtDetaljer">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="BetaDetaljerPerson" type="xsd1:BetaDetaljer" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="BetaDetaljerEnk" type="xsd1:BetaDetaljer" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="BetaKilder" type="xsd1:BetaKilder" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NaringsInteresserGjenpart">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="StatusDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SelskapsFormKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SelskapsFormTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="RolleKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="RolleTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Eierandel" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervTekst" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Meldinger">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MeldingsKode" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="MeldingsTekst" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="HistoriskRating">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EndrAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EndrMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Rating" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Limit" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="AktuellHendelse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnAr" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NokkeltallForetak">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Overskuddsprosent" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Rentedekningsgrad" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Totalrentabilitet" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EKRentabilitet" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LangLagerfinans" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GjennomsnittLager" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EgenkapitalAndel" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Tapsbuffer" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FremmedkapitalKostnad" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad1" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad2" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LikviderProsentSalg" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Arbeidskapital" nillable="true" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NokkeltallKonsern">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Overskuddsprosent" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Rentedekningsgrad" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Totalrentabilitet" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EKRentabilitet" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LangLagerfinans" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GjennomsnittLager" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EgenkapitalAndel" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Tapsbuffer" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FremmedkapitalKostnad" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad1" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad2" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LikviderProsentSalg" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Arbeidskapital" nillable="true" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NokkeltallBransje">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Overskuddsprosent" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Rentedekningsgrad" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Totalrentabilitet" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EKRentabilitet" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LangLagerfinans" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GjennomsnittLager" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EgenkapitalAndel" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Tapsbuffer" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FremmedkapitalKostnad" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad1" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad2" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LikviderProsentSalg" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Arbeidskapital" nillable="true" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EiendelerKonsern">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumAnleggsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumImmatrielleEiendeler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ForskningUtvikling" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Konsesjoner" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="UtsattSkattefordel" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Goodwill" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumVarigeDriftsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FastEiendom" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MaskinerAnlegg" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkipRiggFly" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="DriftsLosore" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumFinansielleAnleggsmilder" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InvestDatter" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InvestAnnetKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Konsernfordring" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InvestTilknyttet" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LanTilknyttet" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InvestAksjer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Obligasjoner" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Pensjonsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AndreAnleggsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumOmlopsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumVarer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LagerRavarer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LagerUferdigeVarer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LagerFerdigeVarer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumFordringer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FordringerKunder" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FordringerAndre" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FordringerKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="KravInnbetSelskapskapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumInvesteringer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AksjerKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AksjerMarked" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ObligasjonerMarked" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AndreMarkedFinInv" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AndreFinInst" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Bankinnskudd" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AndreOmlopsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumEiendeler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Pantstillelser" nillable="true" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EiendelerForetak">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumAnleggsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumImmatrielleEiendeler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ForskningUtvikling" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Konsesjoner" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="UtsattSkattefordel" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Goodwill" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumVarigeDriftsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FastEiendom" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MaskinerAnlegg" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkipRiggFly" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="DriftsLosore" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumFinansielleAnleggsmilder" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InvestDatter" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InvestAnnetKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Konsernfordring" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InvestTilknyttet" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LanTilknyttet" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InvestAksjer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Obligasjoner" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Pensjonsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AndreAnleggsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumOmlopsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumVarer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LagerRavarer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LagerUferdigeVarer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LagerFerdigeVarer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumFordringer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FordringerKunder" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FordringerAndre" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FordringerKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="KravInnbetSelskapskapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumInvesteringer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AksjerKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AksjerMarked" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ObligasjonerMarked" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AndreMarkedFinInv" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AndreFinInst" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Bankinnskudd" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AndreOmlopsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumEiendeler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Pantstillelser" nillable="true" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OkonomiSammendragKonsern">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Totalinntekt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ResultatForSkatt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ArsResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumEiendeler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Overskuddsprosent" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Totalrentabilitet" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Egenkapitalandel" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad1" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad2" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="HonorarRevisor" nillable="true" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OkonomiEnk">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="FodselsdatoEier" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkatteAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Formue" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EndringFormue" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Inntekt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EndringInntekt" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Skatt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkatteKlasse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkatteKlasseUtl" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Kommunenr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KommuneNavn" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EiendomNorgeListe">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Kommunenr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KommuneNavn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Gardnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Bruksnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Festenr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Seksjonsnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Type" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Andel" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Losore">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AjourDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SpesTekst1" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SpesTekst2" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SpesTekst3" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="EiendomVerdier">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="EiendomNorge" />
+          <xsd:enumeration value="EiendomNorgeListe" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="BetaVerdier">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Detaljer" />
+          <xsd:enumeration value="Sammendrag" />
+          <xsd:enumeration value="DetaljerSammendrag" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="OkonomiSammendragForetak">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Totalinntekt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ResultatForSkatt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ArsResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumEiendeler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Overskuddsprosent" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Totalrentabilitet" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Egenkapitalandel" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad1" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad2" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="HonorarRevisor" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OverskuddsprosentBransje" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TotalrentabilitetBransje" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EgenkapitalandelBransje" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad1Bransje" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Likviditetsgrad2Bransje" nillable="true" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ForetakSok">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Dunsnr" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Postnr" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Telefon" type="xsd:string" />
+          </xsd:sequence>
+          <xsd:attribute name="SokType" type="xsd1:SokTypeVerdier" use="optional" />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="SokTypeVerdier">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Matchit" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="AnsatteData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnsatteAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnsatteAntall" nillable="true" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BransjeData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="BransjeKode" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BransjeTekst" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="RegnskapsforerData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsforerOrgnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsforerInternref" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="RegnskapsforerNavn" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="ForetakSokResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="ForetakData" type="xsd1:ForetakData" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Meldinger" type="xsd1:Meldinger" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="Aksjonar">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InternRef" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="FodtDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Postnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Eierandel" nillable="true" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Rettighetshavere">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Internreferanse" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FodtDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Postnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Andel" nillable="true" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="IndirekteEier" nillable="true" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="Overvakningstype">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Daglig overvakning" />
+          <xsd:enumeration value="Daglig overvakning + SDO Mini" />
+          <xsd:enumeration value="Daglig overvakning + SDO Normal" />
+          <xsd:enumeration value="Daglig overvakning + SDO Spesial" />
+          <xsd:enumeration value="SDO Mini" />
+          <xsd:enumeration value="SDO Normal" />
+          <xsd:enumeration value="SDO Spesial" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="OvervakningListe">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Dunsnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KodeType" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KodeTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Postnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Telefon" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kunderef" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Avdnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="TypeKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="TypeTekst" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="OppdaterOvervakningPortefoljeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="OvervakningListe" type="xsd1:OvervakningListe" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Meldinger" type="xsd1:Meldinger" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="OvervakningOperasjon">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Innmelding" />
+          <xsd:enumeration value="Utmelding" />
+          <xsd:enumeration value="Liste" />
+          <xsd:enumeration value="Endre" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="Tilleggsinfo">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Tilleggstekst" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="HentOvervakningEndringerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="OvervakningEndringer" type="xsd1:OvervakningEndringer" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Meldinger" type="xsd1:Meldinger" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="Datterselskap">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KodeType" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KodeTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Postnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Eierandel" nillable="true" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NavnAdresse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="KodeType" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KodeTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Markedsnavn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="HistoriskNavnData" nillable="true" type="xsd1:HistoriskNavnData" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="GateAdresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GatePostboks" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GatePostnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="GatePoststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="PostPostboks" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostPosthus" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="PostPostnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostPoststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="JurAdresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="JurPostnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="JurPoststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Telefon" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Telefax" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Webadresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Epost" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="HistoriskNavnData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="NavnType" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AktivFra" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AktivTil" nillable="true" type="xsd:date" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EiendomNorge">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="SvarEiendomNorge" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="KonsernlinkType">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="HeleKonsernet" />
+          <xsd:enumeration value="ForetakOversteMor" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="OvervakningEndringer">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kunderef" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Avdnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Endringskode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Endringstekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Tilleggsinfo" type="xsd1:Tilleggsinfo" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="OppdaterOvervakningPortefolje">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="RecordType" type="xsd1:OvervakningOperasjon" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="Kunderef" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="NyKunderef" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="Orgnr" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="Dunsnr" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="Kundekode" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Avdnr" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="Overvakningstype" type="xsd1:Overvakningstype" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="HentOvervakningEndringer">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Avdnr" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="Dato" type="xsd:date" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ForetakData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Dunsnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KodeType" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KodeTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Selskapsform" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Postnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="PostPostnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostPoststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="JurAdresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="JurPostnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="JurPoststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Telefon" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SisteRegnskapsAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SisteRegnskapsMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="BransjeData" nillable="true" type="xsd1:BransjeData" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SektorKode" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SektorTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="EtablertDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="GjenpartsIndikator" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OkonomiDetaljerForetak">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="Endringsdato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Totalinntekt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Salgsinntekter" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenDriftsinntekt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Varekostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Beholdningsendring" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Lonnskostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Avskrivninger" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Nedskrivninger" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenDriftskostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="DriftsResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InntektInvDatter" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InntektInvKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InntektInvAnnen" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RenteinntektKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RenteinntektAnnen" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FinansinntektAnnen" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Finansinntekt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="VerdiendringMarFinOmlopsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="NedskrivningMarFinOmlopsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="NedskrivningFinAnleggsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RentekostnadKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenRentekostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenFinanskostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Finanskostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OrdResultatForSkatt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkattOrdResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OrdResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EkstraordInntekt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EkstraordKostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkattEkstraordResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumSkatt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MinoritetsInteresser" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ArsResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Konsernbidrag" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Utbytte" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TilFondVurdFor" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TilAnnenEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TapKrav" nillable="true" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="OkonomiDetaljerKonsern">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Totalinntekt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Salgsinntekter" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenDriftsinntekt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Varekostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Beholdningsendring" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Lonnskostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Avskrivninger" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Nedskrivninger" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenDriftskostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="DriftsResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InntektInvDatter" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InntektInvKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InntektInvAnnen" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RenteinntektKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RenteinntektAnnen" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FinansinntektAnnen" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Finansinntekt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="VerdiendringMarFinOmlopsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="NedskrivningMarFinOmlopsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="NedskrivningFinAnleggsmidler" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RentekostnadKonsern" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenRentekostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenFinanskostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Finanskostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OrdResultatForSkatt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkattOrdResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OrdResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EkstraordInntekt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EkstraordKostnad" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkattEkstraordResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumSkatt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="MinoritetsInteresser" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ArsResultat" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Konsernbidrag" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Utbytte" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TilFondVurdFor" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TilAnnenEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TapKrav" nillable="true" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GjeldEgenkapitalForetak">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InnskuttEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Selskapskapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EgneAksjer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Overkursfond" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OpptjentEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FondForVurd" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Minoritetsinteresser" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AvsetningForpliktelser" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="PensjonForpliktelser" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="UtsattSkatt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AndreAvsetninger" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumLangsiktigGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenLangsiktigGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="KonvertibleLanLang" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ObligasjonsLan" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GjeldKredittLang" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GjeldKonsernLang" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnsvarligLanekapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OvrigLangsiktigGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumKortsiktigGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="KonvertibleLanKort" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SertifikatLan" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GjeldKredittKort" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Kassakreditt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LeverandorGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="BetalbarSkatt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkyldOffentligAvgift" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GjeldKonsernKort" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Utbytte" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenKortsiktigGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumGjeldEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Kassekredittlimit" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkyldKonsernbidrag" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AvdragLangsiktigGjeld" nillable="true" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GjeldEgenkapitalKonsern">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="InnskuttEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Selskapskapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EgneAksjer" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Overkursfond" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OpptjentEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="FondForVurd" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Minoritetsinteresser" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AvsetningForpliktelser" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="PensjonForpliktelser" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="UtsattSkatt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AndreAvsetninger" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumLangsiktigGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenLangsiktigGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="KonvertibleLanLang" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ObligasjonsLan" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GjeldKredittLang" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GjeldKonsernLang" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnsvarligLanekapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OvrigLangsiktigGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumKortsiktigGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="KonvertibleLanKort" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SertifikatLan" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GjeldKredittKort" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Kassakreditt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="LeverandorGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="BetalbarSkatt" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkyldOffentligAvgift" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GjeldKonsernKort" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Utbytte" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AnnenKortsiktigGjeld" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SumGjeldEgenkapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Kassekredittlimit" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkyldKonsernbidrag" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AvdragLangsiktigGjeld" nillable="true" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Revisoranmerkning">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RegnskapsAvMnd" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="AnmerkningsKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="AnmerkningsTekst" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="KonsernLink">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OrgnrOversteMor" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OrgnrNaermesteMor" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Lopenr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="NivaDeltagende" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="LandkodeDeltagende" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OrgnrDeltagende" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="NavnDeltagende" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EierandelDeltagende" nillable="true" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="RapportVerdier">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Rating" />
+          <xsd:enumeration value="Kompakt" />
+          <xsd:enumeration value="Total" />
+          <xsd:enumeration value="Avdeling" />
+          <xsd:enumeration value="Grunnrapport" />
+          <xsd:enumeration value="Firmaattest" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="Kreditorvarsel">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="KreditorKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KreditorKodeBeskrivelse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="RegistrertDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="ReferanseOffnr" nillable="true" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="AvdelingData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="AntallAnsatte" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Telefon" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Telefax" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="StiftetDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BransjeKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BransjeTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DagligLeder" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="HovedforetakOrgnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="HovedforetakDunsnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="HovedforetakNavn" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="HentForetakResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Identifikasjon" type="xsd1:Identifikasjon" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="NavnAdresse" type="xsd1:NavnAdresse" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Rating" type="xsd1:Rating" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="HistRating" type="xsd1:HistoriskRating" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Grunnfakta" type="xsd1:Grunnfakta" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Juridisk" type="xsd1:Juridisk" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Verv" type="xsd1:Verv" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Aksjonar" type="xsd1:Aksjonar" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Datterselskap" type="xsd1:Datterselskap" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="OkonomiEnk" type="xsd1:OkonomiEnk" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="NokkeltallForetak" type="xsd1:NokkeltallForetak" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="NokkeltallBransje" type="xsd1:NokkeltallBransje" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="NokkeltallKonsern" type="xsd1:NokkeltallKonsern" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="BetaSammendrag" type="xsd1:BetaSammendrag" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="BetaDetaljer" type="xsd1:BetaDetaljer" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Losore" type="xsd1:Losore" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="EiendomNorge" type="xsd1:EiendomNorge" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="KonsernLink" type="xsd1:KonsernLink" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Scoring" type="xsd1:Scoring" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="OkonomiSammendragForetak" type="xsd1:OkonomiSammendragForetak" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="OkonomiSammendragKonsern" type="xsd1:OkonomiSammendragKonsern" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="OkonomiDetaljerForetak" type="xsd1:OkonomiDetaljerForetak" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="OkonomiDetaljerKonsern" type="xsd1:OkonomiDetaljerKonsern" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="EiendelerForetak" type="xsd1:EiendelerForetak" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="EiendelerKonsern" type="xsd1:EiendelerKonsern" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="GjeldEgenkapitalForetak" type="xsd1:GjeldEgenkapitalForetak" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="GjeldEgenkapitalKonsern" type="xsd1:GjeldEgenkapitalKonsern" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Revisoranmerkninger" type="xsd1:Revisoranmerkning" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="AvdelingData" type="xsd1:AvdelingData" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Rettighetshavere" type="xsd1:Rettighetshavere" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="EiendomNorgeListe" type="xsd1:EiendomNorgeListe" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="FullmaktForetak" type="xsd1:FullmaktForetak" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="GjenpartData" type="xsd1:GjenpartData" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Meldinger" type="xsd1:Meldinger" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="Grunnfakta">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="SelskFormKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SelskFormTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="EtablertAr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="StiftetDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Aksjekapital" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="AksjekapitalStatus" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="RegistrertSted" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="RegistrertDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="RevisorOrgnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="RevisorNavn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="BankRegnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BankNavn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SektorKode" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SektorTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="RegnskapsforerData" nillable="true" type="xsd1:RegnskapsforerData" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="BransjeData" nillable="true" type="xsd1:BransjeData" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="AnsatteData" nillable="true" type="xsd1:AnsatteData" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="RevisorFravalgtDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="RegistrertMVA" nillable="true" type="xsd:boolean" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BetaDetaljer">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="RegistrertDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BetaGruppeKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BetaGruppeTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BetaType" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BetaTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="BetaBelop" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KildeKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KildeTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="KildeReferansenr" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusAnmerkning" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="StatusDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kreditor" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="HentForetak">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Dunsnr" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="NavnAdresse" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Rapport" type="xsd1:RapportVerdier" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Scoremodell" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="EgenData" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="JuridiskVerv" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Grunnfakta" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AksjonarDatter" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="ReelleRettighetshavere" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Beta" type="xsd1:BetaVerdier" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="OkonomiDetaljer" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="KonsernLink" type="xsd1:KonsernlinkType" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Losore" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Eiendom" type="xsd1:EiendomVerdier" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Fullmakt" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TelefonVerv" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="Rating">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Rating" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="RatingBeskrivelse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Limit" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="AktuellHendelse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DelbGrunnfakta" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DelbEierJurdisk" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DelbOkonomi" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DelbBetalingserfaring" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="HentArsrapportListe">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Orgnr" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Dunsnr" type="xsd:int" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="Regnskapsar">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="unbounded" name="Ar" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="HentArsrapportListeResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="ArsrapportData" type="xsd1:ArsrapportData" />
+            <xsd:element minOccurs="1" maxOccurs="unbounded" name="Meldinger" type="xsd1:Meldinger" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArsrapportData">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Orgnr" type="xsd:int" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Dunsnr" type="xsd:int" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Regnskapsar" type="xsd1:Regnskapsar" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="HentArsrapport">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Orgnr" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Dunsnr" type="xsd:int" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="Regnskapsar">
+              <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element minOccurs="1" maxOccurs="unbounded" name="Ar" type="xsd:int" />
+                </xsd:sequence>
+              </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="Mail" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ArsrapportStatus">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusMelding" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="HentArsrapportResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="ArsrapportStatus" type="xsd1:ArsrapportStatus" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Meldinger" type="xsd1:Meldinger" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+    <xsd:schema xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://dbonline.no/webservices/xsd/Autorisasjon">
+      <xsd:complexType name="Gjenpart">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="SluttBrukerID" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KundeNavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KundeAdresse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Postnr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Email" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Telefon" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="BrukerAutorisasjon">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="BrukerID" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="Passord" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="SluttBruker" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Referanse" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="ProduserElektroniskGjenpart" type="xsd2:ProduserElektroniskGjenpartVerdier" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Gjenpart" type="xsd2:Gjenpart" />
+            <xsd:element minOccurs="1" maxOccurs="1" fixed="v2-1-1" name="Versjon" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ProduserElektroniskGjenpartData">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Mobilnr" type="xsd:long" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Epost" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="ProduserElektroniskGjenpartVerdier">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Kunde" />
+          <xsd:enumeration value="Standard" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="hentArsrapportReq">
+    <wsdl:part name="brukerautorisasjon" element="xsd2:BrukerAutorisasjon" />
+    <wsdl:part name="hentArsrapportReq" element="xsd1:HentArsrapport" />
+  </wsdl:message>
+  <wsdl:message name="hentArsrapportResp">
+    <wsdl:part name="hentArsrapportResp" element="xsd1:HentArsrapportResponse" />
+  </wsdl:message>
+  <wsdl:message name="hentArsrapportListeReq">
+    <wsdl:part name="autorisasjon" element="xsd2:BrukerAutorisasjon" />
+    <wsdl:part name="hentArsrapportListeReq" element="xsd1:HentArsrapportListe" />
+  </wsdl:message>
+  <wsdl:message name="hentArsrapportListeResp">
+    <wsdl:part name="hentArsrapportListeResp" element="xsd1:HentArsrapportListeResponse" />
+  </wsdl:message>
+  <wsdl:message name="oppdaterOvervakningsportefoljeResp">
+    <wsdl:part name="oppdaterOvervakningsportefoljeResp" element="xsd1:OppdaterOvervakningPortefoljeResponse" />
+  </wsdl:message>
+  <wsdl:message name="sokForetakResp">
+    <wsdl:part name="sokForetakResp" element="xsd1:ForetakSokResponse" />
+  </wsdl:message>
+  <wsdl:message name="hentForetakResp">
+    <wsdl:part name="hentForetakResp" element="xsd1:HentForetakResponse" />
+  </wsdl:message>
+  <wsdl:message name="sokForetakReq">
+    <wsdl:part name="autorisasjon" element="xsd2:BrukerAutorisasjon" />
+    <wsdl:part name="sokForetakReq" element="xsd1:ForetakSok" />
+  </wsdl:message>
+  <wsdl:message name="hentOvervakningInfoResp">
+    <wsdl:part name="hentOvervakningInfoResp" element="xsd1:HentOvervakningEndringerResponse" />
+  </wsdl:message>
+  <wsdl:message name="hentForetakReq">
+    <wsdl:part name="autorisasjon" element="xsd2:BrukerAutorisasjon" />
+    <wsdl:part name="hentForetakReq" element="xsd1:HentForetak" />
+  </wsdl:message>
+  <wsdl:message name="oppdaterOvervakningsportefoljeReq">
+    <wsdl:part name="autorisasjon" element="xsd2:BrukerAutorisasjon" />
+    <wsdl:part name="oppdaterOvervakningsportefoljeReq" element="xsd1:OppdaterOvervakningPortefolje" />
+  </wsdl:message>
+  <wsdl:message name="hentOvervakningInfoReq">
+    <wsdl:part name="autorisasjon" element="xsd2:BrukerAutorisasjon" />
+    <wsdl:part name="hentOvervakningInfoReq" element="xsd1:HentOvervakningEndringer" />
+  </wsdl:message>
+  <wsdl:portType name="ForetakInfo">
+    <wsdl:operation name="sokForetak">
+      <wsdl:input message="tns:sokForetakReq" />
+      <wsdl:output message="tns:sokForetakResp" />
+    </wsdl:operation>
+    <wsdl:operation name="oppdaterOvervakningsportefolje">
+      <wsdl:input message="tns:oppdaterOvervakningsportefoljeReq" />
+      <wsdl:output message="tns:oppdaterOvervakningsportefoljeResp" />
+    </wsdl:operation>
+    <wsdl:operation name="hentOvervakningInfo">
+      <wsdl:input message="tns:hentOvervakningInfoReq" />
+      <wsdl:output message="tns:hentOvervakningInfoResp" />
+    </wsdl:operation>
+    <wsdl:operation name="hentForetakinfo">
+      <wsdl:input message="tns:hentForetakReq" />
+      <wsdl:output message="tns:hentForetakResp" />
+    </wsdl:operation>
+    <wsdl:operation name="hentArsrapportListe">
+      <wsdl:input message="tns:hentArsrapportListeReq" />
+      <wsdl:output message="tns:hentArsrapportListeResp" />
+    </wsdl:operation>
+    <wsdl:operation name="hentArsrapport">
+      <wsdl:input message="tns:hentArsrapportReq" />
+      <wsdl:output message="tns:hentArsrapportResp" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ForetakInfoBinding" type="tns:ForetakInfo">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="sokForetak">
+      <soap:operation soapAction="http://www.dbonline.no/webservices/service/ForetakSok" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="sokForetakReq" />
+        <soap:header message="tns:sokForetakReq" part="autorisasjon" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="sokForetakResp" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="oppdaterOvervakningsportefolje">
+      <soap:operation soapAction="http://www.dbonline.no/webservices/service/OppdaterOvervakningPortefolje" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="oppdaterOvervakningsportefoljeReq" />
+        <soap:header message="tns:oppdaterOvervakningsportefoljeReq" part="autorisasjon" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="oppdaterOvervakningsportefoljeResp" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hentOvervakningInfo">
+      <soap:operation soapAction="http://www.dbonline.no/webservices/service/HentOvervakningEndringer" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="hentOvervakningInfoReq" />
+        <soap:header message="tns:hentOvervakningInfoReq" part="autorisasjon" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="hentOvervakningInfoResp" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hentForetakinfo">
+      <soap:operation soapAction="http://www.dbonline.no/webservices/service/HentForetakinfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="hentForetakReq" />
+        <soap:header message="tns:hentForetakReq" part="autorisasjon" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="hentForetakResp" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hentArsrapportListe">
+      <soap:operation soapAction="http://www.dbonline.no/webservices/service/HentArsrapportListe" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="hentArsrapportListeReq" />
+        <soap:header message="tns:hentArsrapportListeReq" part="autorisasjon" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="hentArsrapportListeResp" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hentArsrapport">
+      <soap:operation soapAction="http://www.dbonline.no/webservices/service/HentArsrapport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="hentArsrapportReq" />
+        <soap:header message="tns:hentArsrapportReq" part="brukerautorisasjon" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="hentArsrapportResp" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Foretak">
+    <wsdl:port name="ForetakInfo" binding="tns:ForetakInfoBinding">
+      <soap:address location="https://test.dbonline.no/webservices/service/ForetakInfo" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
