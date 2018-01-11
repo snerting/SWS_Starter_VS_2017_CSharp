@@ -1,0 +1,661 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd1="http://dbonline.no/webservices/xsd/PersonInfo" xmlns:xsd2="http://dbonline.no/webservices/xsd/Autorisasjon" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://dbonline.no/webservices/wsdl/PersonInfo" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" name="PersonInfo" targetNamespace="http://dbonline.no/webservices/wsdl/PersonInfo" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://dbonline.no/webservices/xsd/PersonInfo">
+      <xsd:complexType name="FullmaktForetak">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Dunsnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Postnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Selskapsform" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="ProkuraKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="ProkuraTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SignaturKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SignaturTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="FullmaktPerson" type="xsd1:FullmaktPerson" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="FullmaktPerson">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Internreferanse" nillable="true" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FodtDato" nillable="true" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Postnr" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FullmaktTypeKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FullmaktTypeTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FullmaktKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FullmaktTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Prioritet" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Antall" nillable="true" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Obligatorisk" nillable="true" type="xsd:boolean" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Verv" nillable="true" type="xsd1:VervData" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="VervData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervTekst" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="LigningVerdier">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Ligning" />
+          <xsd:enumeration value="LigningGjeldsgrad" />
+          <xsd:enumeration value="LigningBrutto" />
+          <xsd:enumeration value="LigningBruttoGjeldsgrad" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="Identifikasjon">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Internref" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NavnAdresse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Status" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="StatusDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="Fodselsdato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Fornavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Mellomnavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Etternavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Postnr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kommune" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Fylke" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresse1" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresse2" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresse3" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresseLandkode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresseLandtekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Alder" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kjonn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Telefon" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NaringsInteresser">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="StatusDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SelskForm" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Rolle" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Eierandel" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervTekst" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="NaringsInteresserGjenpart">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Orgnr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="StatusDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SelskapsFormKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SelskapsFormTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="RolleKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="RolleTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Eierandel" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="VervTekst" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BetaSammendrag">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AntallInkasso" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AjourDatoInkasso" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AntallPanterLosore" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AjourDatoLosore" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="AntallPanterEiendom" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AjourDatoEiendom" type="xsd:date" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Ligning">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkatteAr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Formue" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EndringFormue" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Inntekt" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EndringInntekt" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Skatt" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SkatteKlasse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SkatteKlasseUtl" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kommunenr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KommuneNavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="BruttoInntekt" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Gjeldsgrad1" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Gjeldsgrad2" type="xsd:double" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="LigningGjenpart">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="SkatteAr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Formue" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Inntekt" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Skatt" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SkatteKlasse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kommunenr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KommuneNavn" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DisponibelInntekt">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Kode" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Beskrivelse" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="TidligereNavnAdresse">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="TidligereNavnAdresse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="EndringsDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="EndringsType" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="TidligerePostAdresse" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Losore">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AjourDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SpesTekst1" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SpesTekst2" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="SpesTekst3" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ArsaksData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="ArsaksKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="ArsaksTekst" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Scorevariabel">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Verdi" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Scorepoeng" type="xsd:int" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Scoring">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Beslutning" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="ArsaksData" type="xsd1:ArsaksData" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Score" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GrenseAvslag" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="GrenseGodkjent" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="TilleggsBeslutning" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="TilleggsBeslutningBeskrivelse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Scorevariabel" type="xsd1:Scorevariabel" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Raascore" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Risikoklasse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="PD" type="xsd:double" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Undermodell" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Limit" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Delomrader">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="DelomradeKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DelomradeTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BedommelseKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BedommelseTekst" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Personalia">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Internref" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kilde" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Status" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="StatusDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="Fodselsdato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Fornavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Mellomnavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Etternavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Postnr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kommune" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Fylke" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresse1" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresse2" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresse3" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresseLandkode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresseLandtekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Alder" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kjonn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Telefon" type="xsd1:Telefon" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="Telefon">
+        <xsd:simpleContent>
+          <xsd:extension base="xsd:string">
+            <xsd:attribute name="Type" type="xsd:string" use="required" />
+          </xsd:extension>
+        </xsd:simpleContent>
+      </xsd:complexType>
+      <xsd:element name="PersonSok">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Fodselsnr" type="xsd:long" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="Fodselsdato" type="xsd:date" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Etternavn" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Fornavn" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Postnr" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Telefon" type="xsd:string" />
+          </xsd:sequence>
+          <xsd:attribute name="SokType" type="xsd1:SokTypeVerdier" use="optional" />
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="PersonSokDSFRelasjoner">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Fodselsnr" type="xsd:long" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="Fodselsdato" type="xsd:date" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Etternavn" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Fornavn" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Postnr" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Kommunenr" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Kommune" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="SokTypeVerdier">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Matchit" />
+          <xsd:enumeration value="DSF" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:simpleType name="BetaVerdier">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Detaljer" />
+          <xsd:enumeration value="Sammendrag" />
+          <xsd:enumeration value="DetaljerSammendrag" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:complexType name="Meldinger">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="MeldingsKode" type="xsd:int" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="MeldingsTekst" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="PersonSokDSFRelasjonerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="OmspurtPerson" type="xsd1:PersonDetaljerDSF" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Ektefelle" type="xsd1:PersonDetaljerDSF" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Barn" type="xsd1:PersonDetaljerDSF" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Forelder" type="xsd1:PersonDetaljerDSF" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Meldinger" type="xsd1:Meldinger" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="PersonDetaljerDSF">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Fodselsnr" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="Fodselsdato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DsfStatusKode" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DsfStatusTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="DsfStatusDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Fornavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Mellomnavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Etternavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="NavnKort" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="NavnOppdatertDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kjonn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="AdresseCo" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresse1" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresse2" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresse3" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="PostAdresseLandkode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BoligNr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AdresseRegistrertDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="AdresseFlyttetDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Postnr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KommuneNr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DsfAdresseStatusKode" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DsfAdresseStatusTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="DsfAdresseStatusDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DsfSivilstandKode" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="DsfSivilstandTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="DsfSivilstandDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Statsborgerskap" type="xsd1:DsfStatus" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FodestedKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="FodestedNavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Fodested" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="RolleKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Ektefelle" type="xsd1:DsfRelasjon" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Barn" type="xsd1:DsfRelasjon" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Mor" type="xsd1:DsfRelasjon" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Far" type="xsd1:DsfRelasjon" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DsfStatus">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Tekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Dato" type="xsd:date" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="DsfRelasjon">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="Fodselsdato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Personnr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatsborgerskapKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatsborgerskapTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kjonn" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="PersonSokResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Personalia" type="xsd1:Personalia" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Meldinger" type="xsd1:Meldinger" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="EiendomNorge">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="SvarEiendomNorge" nillable="true" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="HentPersonResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Identifikasjon" type="xsd1:Identifikasjon" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="NavnAdresse" type="xsd1:NavnAdresse" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Scoring" type="xsd1:Scoring" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Delomrader" type="xsd1:Delomrader" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="BetaSammendrag" type="xsd1:BetaSammendrag" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="BetaDetaljer" type="xsd1:BetaDetaljer" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Ligning" type="xsd1:Ligning" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="DisponibelInntekt" type="xsd1:DisponibelInntekt" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="NaringsInteresser" type="xsd1:NaringsInteresser" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="EiendomNorge" type="xsd1:EiendomNorge" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="EiendomListe" type="xsd1:EiendomListe" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Losore" type="xsd1:Losore" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="TidligereNavnAdresse" type="xsd1:TidligereNavnAdresse" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="EierEiendomScore" type="xsd1:EiendomNorge" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="EierBorettScore" type="xsd1:EiendomNorge" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="FullmaktForetak" type="xsd1:FullmaktForetak" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="GjenpartData" type="xsd1:GjenpartData" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Meldinger" type="xsd1:Meldinger" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="OmspurtData">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Adresse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Postnr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Poststed" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BetaOmspurtDetaljer">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="BetaDetaljerPerson" type="xsd1:BetaDetaljer" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="BetaDetaljerEnk" type="xsd1:BetaDetaljer" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="BetaKilder" type="xsd1:BetaKilder" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="GjenpartData">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Referansenr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="OmspurtData" type="xsd1:OmspurtData" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="Ligning" type="xsd1:LigningGjenpart" />
+          <xsd:element minOccurs="0" maxOccurs="unbounded" name="NaringsInteresser" type="xsd1:NaringsInteresserGjenpart" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BetaOmspurtDetaljer" type="xsd1:BetaOmspurtDetaljer" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="EiendomListe">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kommunenr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KommuneNavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Gardnr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Bruksnr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Festenr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Seksjonsnr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Type" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Andel" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:simpleType name="EiendomVerdier">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="EiendomNorge" />
+          <xsd:enumeration value="EiendomNorgeListe" />
+        </xsd:restriction>
+      </xsd:simpleType>
+      <xsd:element name="HentPerson">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Internref" type="xsd:long" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="NavnAdresse" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Scoremodell" type="xsd:int" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="EgenData" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="NaringsInteresser" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Ligning" type="xsd1:LigningVerdier" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="DisponibelInntekt" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Beta" type="xsd1:BetaVerdier" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="TidligereNavnAdresse" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Eiendom" type="xsd1:EiendomVerdier" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Losore" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EierEiendomScore" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="EierBorettScore" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Fullmakt" type="xsd:boolean" />
+            <xsd:element minOccurs="0" maxOccurs="1" default="0" name="Telefon" type="xsd:boolean" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="BetaKilder">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Telefon" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="BetaDetaljer">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="RegistrertDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BetaGruppeKode" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BetaGruppeTekst" nillable="true" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BetaType" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="BetaTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="BetaBelop" type="xsd:long" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KildeKode" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KildeTekst" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0" name="KildeReferansenr" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="StatusAnmerkning" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" default="0001-01-01" name="StatusDato" type="xsd:date" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Kreditor" type="xsd:string" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:complexType name="ScoreVariabel">
+        <xsd:sequence>
+          <xsd:element minOccurs="1" maxOccurs="1" name="Navn" type="xsd:string" />
+          <xsd:element minOccurs="1" maxOccurs="1" name="Verdi" type="xsd1:ScoreVariabelType" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="HentScoreVariabler">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="Fodselsnr" type="xsd:long" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="HentScoreVariablerResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="BetaVariabler" type="xsd1:ScoreVariabel" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="VervVariabler" type="xsd1:ScoreVariabel" />
+            <xsd:element minOccurs="0" maxOccurs="unbounded" name="Meldinger" type="xsd1:Meldinger" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:complexType name="ScoreVariabelType">
+        <xsd:simpleContent>
+          <xsd:extension base="xsd:anySimpleType">
+            <xsd:attribute name="Type" use="required">
+              <xsd:simpleType>
+                <xsd:restriction base="xsd:string">
+                  <xsd:enumeration value="long" />
+                  <xsd:enumeration value="boolean" />
+                  <xsd:enumeration value="string" />
+                </xsd:restriction>
+              </xsd:simpleType>
+            </xsd:attribute>
+          </xsd:extension>
+        </xsd:simpleContent>
+      </xsd:complexType>
+    </xsd:schema>
+    <xsd:schema xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" targetNamespace="http://dbonline.no/webservices/xsd/Autorisasjon">
+      <xsd:complexType name="Gjenpart">
+        <xsd:sequence>
+          <xsd:element minOccurs="0" maxOccurs="1" name="SluttBrukerID" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KundeNavn" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="KundeAdresse" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Postnr" type="xsd:int" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Email" type="xsd:string" />
+          <xsd:element minOccurs="0" maxOccurs="1" name="Telefon" type="xsd:long" />
+        </xsd:sequence>
+      </xsd:complexType>
+      <xsd:element name="BrukerAutorisasjon">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="1" maxOccurs="1" name="BrukerID" type="xsd:string" />
+            <xsd:element minOccurs="1" maxOccurs="1" name="Passord" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="SluttBruker" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Referanse" type="xsd:string" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="ProduserElektroniskGjenpart" type="xsd2:ProduserElektroniskGjenpartVerdier" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Gjenpart" type="xsd2:Gjenpart" />
+            <xsd:element minOccurs="1" maxOccurs="1" fixed="v2-1-1" name="Versjon" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="ProduserElektroniskGjenpartData">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element minOccurs="0" maxOccurs="1" name="Mobilnr" type="xsd:long" />
+            <xsd:element minOccurs="0" maxOccurs="1" name="Epost" type="xsd:string" />
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:simpleType name="ProduserElektroniskGjenpartVerdier">
+        <xsd:restriction base="xsd:string">
+          <xsd:enumeration value="Kunde" />
+          <xsd:enumeration value="Standard" />
+        </xsd:restriction>
+      </xsd:simpleType>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="hentScoreVariablerReq">
+    <wsdl:part name="HentScoreVariablerReq" element="xsd1:HentScoreVariabler" />
+    <wsdl:part name="Autorisasjon" element="xsd2:BrukerAutorisasjon" />
+    <wsdl:part name="ElektroniskGjenpart" element="xsd2:ProduserElektroniskGjenpartData" />
+  </wsdl:message>
+  <wsdl:message name="hentScoreVariablerResp">
+    <wsdl:part name="HentScoreVariablerResp" element="xsd1:HentScoreVariablerResponse" />
+  </wsdl:message>
+  <wsdl:message name="hentPersonResp">
+    <wsdl:part name="HentPersonResp" element="xsd1:HentPersonResponse" />
+  </wsdl:message>
+  <wsdl:message name="personSokReq">
+    <wsdl:part name="PersonSokReq" element="xsd1:PersonSok" />
+    <wsdl:part name="Autorisasjon" element="xsd2:BrukerAutorisasjon" />
+  </wsdl:message>
+  <wsdl:message name="personSokResp">
+    <wsdl:part name="PersonSokResp" element="xsd1:PersonSokResponse" />
+  </wsdl:message>
+  <wsdl:message name="personSokDSFRelasjonerReq">
+    <wsdl:part name="PersonSokDSFRelasjonerReq" element="xsd1:PersonSokDSFRelasjoner" />
+    <wsdl:part name="Autorisasjon" element="xsd2:BrukerAutorisasjon" />
+  </wsdl:message>
+  <wsdl:message name="personSokDSFRelasjonerResp">
+    <wsdl:part name="PersonSokDSFRelasjonerResp" element="xsd1:PersonSokDSFRelasjonerResponse" />
+  </wsdl:message>
+  <wsdl:message name="hentPersonReq">
+    <wsdl:part name="HentPersonReq" element="xsd1:HentPerson" />
+    <wsdl:part name="Autorisasjon" element="xsd2:BrukerAutorisasjon" />
+    <wsdl:part name="ElektroniskGjenpart" element="xsd2:ProduserElektroniskGjenpartData" />
+  </wsdl:message>
+  <wsdl:portType name="PersonInfo">
+    <wsdl:operation name="sokPerson">
+      <wsdl:input message="tns:personSokReq" />
+      <wsdl:output message="tns:personSokResp" />
+    </wsdl:operation>
+    <wsdl:operation name="sokPersonDSFRelasjoner">
+      <wsdl:input message="tns:personSokDSFRelasjonerReq" />
+      <wsdl:output message="tns:personSokDSFRelasjonerResp" />
+    </wsdl:operation>
+    <wsdl:operation name="hentPersoninfo">
+      <wsdl:input message="tns:hentPersonReq" />
+      <wsdl:output message="tns:hentPersonResp" />
+    </wsdl:operation>
+    <wsdl:operation name="hentScorevariabler">
+      <wsdl:input message="tns:hentScoreVariablerReq" />
+      <wsdl:output message="tns:hentScoreVariablerResp" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="PersonInfoBinding" type="tns:PersonInfo">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="sokPerson">
+      <soap:operation soapAction="http://www.dbonline.no/webservices/service/PersonSok" />
+      <wsdl:input>
+        <soap:body use="literal" parts="PersonSokReq" />
+        <soap:header message="tns:personSokReq" part="Autorisasjon" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="PersonSokResp" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="sokPersonDSFRelasjoner">
+      <soap:operation soapAction="http://www.dbonline.no/webservices/service/PersonSokDSFRelasjoner" />
+      <wsdl:input>
+        <soap:body use="literal" parts="PersonSokDSFRelasjonerReq" />
+        <soap:header message="tns:personSokReq" part="Autorisasjon" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="PersonSokDSFRelasjonerResp" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hentPersoninfo">
+      <soap:operation soapAction="http://www.dbonline.no/webservices/service/HentPersoninfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="HentPersonReq" />
+        <soap:header message="tns:hentPersonReq" part="Autorisasjon" use="literal" />
+        <soap:header message="tns:hentPersonReq" part="ElektroniskGjenpart" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="HentPersonResp" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hentScorevariabler">
+      <soap:operation soapAction="http://www.dbonline.no/webservices/service/HentScoreVariabler" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" parts="HentScoreVariablerReq" />
+        <soap:header message="tns:hentScoreVariablerReq" part="Autorisasjon" use="literal" />
+        <soap:header message="tns:hentScoreVariablerReq" part="ElektroniskGjenpart" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" parts="HentScoreVariablerResp" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Person">
+    <wsdl:port name="PersonInfo" binding="tns:PersonInfoBinding">
+      <soap:address location="https://test.dbonline.no/webservices/service/PersonInfo" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

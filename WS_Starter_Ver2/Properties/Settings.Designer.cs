@@ -32,5 +32,15 @@ namespace WS_Starter_Ver2.Properties {
                 return ((string)(this["WS_Starter_Ver2_WS_Foretak_Foretak"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://test.dbonline.no/webservices/service/PersonInfo")]
+        public string WS_Starter_Ver2_WS_Personinfo_Person {
+            get {
+                return ((string)(this["WS_Starter_Ver2_WS_Personinfo_Person"]));
+            }
+        }
     }
 }
