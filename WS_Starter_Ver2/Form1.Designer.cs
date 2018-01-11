@@ -44,11 +44,22 @@
             this.dgvReellerettighetshavere = new System.Windows.Forms.DataGridView();
             this.label5 = new System.Windows.Forms.Label();
             this.textBoxOrgnrReellerettighetshavere = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tbFirstName = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.btnPersonSearch = new System.Windows.Forms.Button();
+            this.dgvPersonSearch = new System.Windows.Forms.DataGridView();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.tbLastName = new System.Windows.Forms.TextBox();
+            this.dtpBornDate = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.dgvResponse)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReellerettighetshavere)).BeginInit();
+            this.tabPage3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonSearch)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGetData
@@ -140,6 +151,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(24, 77);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -212,6 +224,96 @@
             this.textBoxOrgnrReellerettighetshavere.Size = new System.Drawing.Size(117, 20);
             this.textBoxOrgnrReellerettighetshavere.TabIndex = 0;
             // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.dtpBornDate);
+            this.tabPage3.Controls.Add(this.tbLastName);
+            this.tabPage3.Controls.Add(this.tbFirstName);
+            this.tabPage3.Controls.Add(this.label8);
+            this.tabPage3.Controls.Add(this.label7);
+            this.tabPage3.Controls.Add(this.label6);
+            this.tabPage3.Controls.Add(this.btnPersonSearch);
+            this.tabPage3.Controls.Add(this.dgvPersonSearch);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1051, 495);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Personsøk";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // tbFirstName
+            // 
+            this.tbFirstName.Location = new System.Drawing.Point(65, 40);
+            this.tbFirstName.Name = "tbFirstName";
+            this.tbFirstName.Size = new System.Drawing.Size(200, 20);
+            this.tbFirstName.TabIndex = 3;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(7, 17);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(52, 13);
+            this.label6.TabIndex = 2;
+            this.label6.Text = "Født dato";
+            this.label6.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // btnPersonSearch
+            // 
+            this.btnPersonSearch.Location = new System.Drawing.Point(317, 63);
+            this.btnPersonSearch.Name = "btnPersonSearch";
+            this.btnPersonSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnPersonSearch.TabIndex = 1;
+            this.btnPersonSearch.Text = "Hent";
+            this.btnPersonSearch.UseVisualStyleBackColor = true;
+            this.btnPersonSearch.Click += new System.EventHandler(this.btnPersonSearch_Click);
+            // 
+            // dgvPersonSearch
+            // 
+            this.dgvPersonSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvPersonSearch.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPersonSearch.Location = new System.Drawing.Point(6, 133);
+            this.dgvPersonSearch.Name = "dgvPersonSearch";
+            this.dgvPersonSearch.Size = new System.Drawing.Size(1039, 356);
+            this.dgvPersonSearch.TabIndex = 0;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(6, 47);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(46, 13);
+            this.label7.TabIndex = 2;
+            this.label7.Text = "Fornavn";
+            this.label7.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(7, 73);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 13);
+            this.label8.TabIndex = 2;
+            this.label8.Text = "Etternavn";
+            this.label8.Click += new System.EventHandler(this.label6_Click);
+            // 
+            // tbLastName
+            // 
+            this.tbLastName.Location = new System.Drawing.Point(65, 66);
+            this.tbLastName.Name = "tbLastName";
+            this.tbLastName.Size = new System.Drawing.Size(200, 20);
+            this.tbLastName.TabIndex = 4;
+            // 
+            // dtpBornDate
+            // 
+            this.dtpBornDate.Location = new System.Drawing.Point(65, 14);
+            this.dtpBornDate.Name = "dtpBornDate";
+            this.dtpBornDate.Size = new System.Drawing.Size(200, 20);
+            this.dtpBornDate.TabIndex = 5;
+            // 
             // Form1
             // 
             this.AcceptButton = this.btnGetData;
@@ -233,6 +335,9 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvReellerettighetshavere)).EndInit();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPersonSearch)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,6 +361,15 @@
         private System.Windows.Forms.DataGridView dgvReellerettighetshavere;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBoxOrgnrReellerettighetshavere;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.TextBox tbFirstName;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button btnPersonSearch;
+        private System.Windows.Forms.DataGridView dgvPersonSearch;
+        private System.Windows.Forms.DateTimePicker dtpBornDate;
+        private System.Windows.Forms.TextBox tbLastName;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label7;
     }
 }
 

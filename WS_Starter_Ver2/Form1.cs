@@ -129,5 +129,79 @@ namespace WS_Starter_Ver2
                 btnGetReellerettighetshavere.Enabled = true;
             }
         }
+
+        private void btnPersonSearch_Click(object sender, EventArgs e)
+        {
+            btnPersonSearch.Enabled = false;
+            this.Cursor = Cursors.WaitCursor;
+
+            try
+            {
+                var brukerAutorisasjonPerson = new WS_Personinfo.BrukerAutorisasjon()
+                {
+                    BrukerID = txtUsername.Text,
+                    Passord = txtPassword.Text
+                };
+
+                var person = new WS_Personinfo.Person() {BrukerAutorisasjonValue = brukerAutorisasjonPerson};
+
+                var hp = new WS_Personinfo.PersonSok();
+
+
+                hp.Fodselsdato = dtpBornDate.Value;
+
+
+                if (!string.IsNullOrEmpty(tbFirstName.Text))
+                {
+                    hp.Fornavn = tbFirstName.Text;
+                }
+
+                if (!string.IsNullOrEmpty(tbLastName.Text))
+                {
+                    hp.Etternavn = tbLastName.Text;
+                }
+
+                var psResponse = person.sokPerson(hp);
+
+
+                if (psResponse.Personalia != null)
+                {
+                    dgvPersonSearch.DataSource = psResponse.Personalia;
+                }
+
+                var sbMessageSummary = new StringBuilder();
+
+                if (psResponse.Meldinger != null)
+                {
+                    var i = 1;
+                    foreach (var message in psResponse.Meldinger)
+                    {
+                        sbMessageSummary.AppendLine(
+                            $"Message nr {i++}: {message.MeldingsKode} {message.MeldingsTekst} ");
+                    }
+                }
+
+                this.Cursor = Cursors.Default;
+
+                if (sbMessageSummary.Length > 1)
+                {
+                    MessageBox.Show(sbMessageSummary.ToString());
+                }
+            }
+            catch (Exception ex)
+            {
+                this.Cursor = Cursors.Default;
+                MessageBox.Show($"Errormessage: {ex.Message}");
+            }
+            finally
+            {
+                btnPersonSearch.Enabled = true;
+            }
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
